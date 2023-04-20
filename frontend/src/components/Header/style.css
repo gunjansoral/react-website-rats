@@ -1,0 +1,138 @@
+.nav-logo {
+  object-fit: cover;
+  height: 50px;
+  padding: 20px;
+  transform: translateY(8px);
+  filter: drop-shadow(0 0 10px #000000) !important;
+}
+
+.container {
+  position: absolute;
+  transform: translateX(50%);
+  right: 50%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100vw;
+  z-index: 999;
+}
+
+.header-left,
+.header-right,
+.header-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-items li {
+  align-items: center;
+  list-style-type: none;
+}
+
+.menu-items li a {
+  color: #585858;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  padding: 14px 16px;
+  white-space: nowrap;
+  text-shadow: 0px 1px 2px #000000;
+}
+
+.menu-items {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.menu-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #b41d1d;
+  padding: 10px;
+  height: 25px;
+  width: 25px;
+}
+
+@media screen and (max-width: 720px) {
+  .menu-items {
+    display: none;
+  }
+
+  .nav-logo {
+    height: 30px;
+    padding: 0;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between !important;
+    margin-top: 0;
+    background-color: aliceblue;
+  }
+
+  .header-right {
+    justify-content: end !important;
+  }
+}
+
+/*logo animation */
+.moving-image {
+  transform: translateY(6px);
+  transition: all 1s ease;
+  filter: drop-shadow(0 0 10px #000000) !important;
+}
+
+.moving-image:hover {
+  animation: move-image 0.2s infinite alternate;
+}
+
+@keyframes move-image {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    transform: translateX(-1px) translateY(5px);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(1px) translateY(5px);
+  }
+}
+
+/* glow effect */
+.glow {
+  text-shadow: none;
+  transition: text-shadow 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.glow:hover {
+  text-shadow: 0 0 1px rgb(19, 227, 255), 0 0 4px rgb(19, 227, 255),
+    0 0 10px rgb(19, 227, 255);
+  position: relative;
+  color: transparent;
+}
+
+/* 3d underline */
+
+.glow:hover::after {
+  content: "";
+  position: absolute;
+  bottom: -36px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: rgba(22, 184, 206, 0.438);
+  transform: perspective(1em) rotateX(45deg) scale(1, 0.35);
+
+  box-shadow: 0 0 30px rgb(19, 227, 255);
+  filter: blur(1em);
+}

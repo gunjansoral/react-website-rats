@@ -1,0 +1,54 @@
+.mp-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #3b3b3b;
+}
+
+.mp-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mp-prev-button,
+.mp-next-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.mp-prev-button:hover,
+.mp-next-button:hover {
+  text-shadow: 0 0 1px rgb(19, 227, 255), 0 0 4px rgb(19, 227, 255),
+    0 0 10px rgb(19, 227, 255);
+  position: relative;
+  color: rgb(19, 227, 255);
+}
+
+.mp-play-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #111;
+  /* border: 1px solid #fff; */
+  text-shadow: none;
+  transition: text-shadow 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.mp-play-button:hover,
+.mp-active {
+  box-shadow: 0 0 1px rgb(19, 227, 255), 0 0 4px rgb(19, 227, 255),
+    0 0 10px rgb(19, 227, 255);
+  position: relative;
+  color: rgb(19, 227, 255);
+}

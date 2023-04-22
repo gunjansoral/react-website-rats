@@ -1,34 +1,43 @@
 // server.js
-
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const SpotifyWebApi = require('spotify-web-api-node');
+const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
+app.use(cors());
+const { PORT, URI, SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } = process.env;
 
-// Endpoint to fetch image paths
-app.get('/api/images', (req, res) => {
-  // Directory path where the images are stored
-  const directoryPath = path.join(__dirname, 'public/images/albums');
-
-  // Read the directory contents
-  fs.readdir(directoryPath, (err, files) => {
-    if (err) {
-      console.error('Error reading directory:', err);
-      res.status(500).json({ error: 'Failed to fetch image paths' });
-    } else {
-      // Filter files to get only image files
-      const imageFiles = files.filter(file => /\.(jpg|jpeg|png|gif)$/i.test(file));
-
-      // Create an array of image paths
-      const imagePaths = imageFiles.map(file => `/images/${file}`);
-
-      res.json(imagePaths);
-    }
-  });
+const spotifyApi = new SpotifyWebApi({
+  clientId: SPOTIFY_CLIENT_ID,
+  clientSecret: SPOTIFY_CLIENT_SECRET
 });
 
+// Retrieve an access token to authenticate with the Spotify API
+spotifyApi.clientCredentialsGrant().then((data) => {
+  spotifyApi.setAccessToken(data.body.access_token);
+}, (err) => {
+  console.error(err);
+});
+
+// Endpoint for fetching artist data from Spotify
+app.get('/api/spotify/artists/:artistId', (req, res) => {
+  // Retrieve the artist ID from the URL parameters
+  const artistId = req.params.artistId;
+
+  // Use the Spotify API client to get information about the artist
+  spotifyApi.getArtist(artistId)
+    .then((data) => {
+      res.send(data.body);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error retrieving artist data from Spotify');
+    });
+});
+
+
 // Start the server
-app.listen(5000, () => {
-  console.log('Server started on http://localhost:5000');
+app.listen(PORT, () => {
+  console.log(`Server started on ${URI}`);
 });

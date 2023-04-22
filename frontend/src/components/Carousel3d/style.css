@@ -38,8 +38,8 @@
 }
 
 #drag-container img:hover {
-  -webkit-box-shadow: 0 0 15px #fffd;
-  box-shadow: 0 0 15px #fffd;
+  -webkit-box-shadow: 0 0 15px rgb(19, 227, 255);
+  box-shadow: 0 0 15px rgb(19, 227, 255);
   -webkit-box-reflect: below 10px
     linear-gradient(transparent, transparent, #0007);
 }

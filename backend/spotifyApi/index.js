@@ -21,9 +21,8 @@ exports.getSpotifyArtist = async (req, res) => {
   // Retrieve the artist ID from the URL parameters
   const artistId = req.params.artistId;
   try {
-    const data = await spotifyApi.getArtist(artistId)
-    res.json(data.body);
-
+    const data = await spotifyApi.getArtistTopTracks(artistId, 'GB')
+    res.json(data.body.tracks);
   } catch (err) {
     console.error(err);
     res.status(500).send('Error retrieving artist data from Spotify');

@@ -11,8 +11,6 @@ const { PORT, URI } = process.env;
 // get data
 app.get('/api/spotify/artist/:artistId', getSpotifyArtist);
 
-
-
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server started on ${URI}`);

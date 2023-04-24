@@ -13,6 +13,7 @@ const MusicPlayer = () => {
 
   return (
     <div className='mp-container'>
+      <audio src="https://p.scdn.co/mp3-preview/3c3367f363ca89e9cb1271a2012733124c511902?cid=221969a1e1034aa5b2e12c5e1b5c5dbe" autoPlay="true" />
       <div className="mp-left">
         <VolumeSlider />
       </div>

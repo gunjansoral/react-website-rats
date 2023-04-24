@@ -1,11 +1,17 @@
 .mp-container {
   position: fixed;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+
   bottom: 0;
   width: 100%;
   padding: 10px;
   background-color: #3b3b3b;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .mp-center {

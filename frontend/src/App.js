@@ -3,26 +3,37 @@ import Header from './components/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { menuItems } from './pages/pages';
 import axios from 'axios'
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import MusicPlayer from './components/MusicPlayer';
 import { MyContext } from './store';
 
+
 function App() {
-  const [accessToken, setAccessToken] = useState();
+  // console.error = () => { };
+
   const [artistData, setArtistData] = useState();
   const util = {
-    server: "http://localhost:5000",
+    server: "http://localhost:5000" || process.env.REACT_APP_MY_SERVER_URL,
     artistId: "5NCZYvOZo5VkSmnkMjgk7f"
   }
 
   const getArtist = async () => {
-    const artist_data = await axios.get(`${util.server}/api/spotify/artist/${util.artistId}`);
-    setArtistData(artist_data);
-    console.log(artist_data)
-  }
+    try {
+      const { data } = await axios.get(`${util.server}/api/spotify/artist/${util.artistId}`);
+      localStorage.setItem('artistData', JSON.stringify(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   useEffect(() => {
+
     getArtist();
+    const artistData = JSON.parse(localStorage.getItem('artistData'));
+
+    setArtistData(artistData);
+    console.log(artistData)
   }, [])
   const importedModules = require.context('./pages', true, /\.js$/);
   return (

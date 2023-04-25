@@ -3,7 +3,7 @@ import './style.css'; // Import CSS for styling
 import { MyContext } from '../../store';
 
 const Carousel3d = () => {
-  const { artistData, setArtistData } = useContext(MyContext);
+  const { artistData } = useContext(MyContext);
   useEffect(() => {
     var radius = 240;
     var autoRotate = true;
@@ -90,8 +90,6 @@ const Carousel3d = () => {
       document.removeEventListener('mouseup', handleMouseUp);
       return false;
     }
-
-    console.log(artistData.data[0].album.images[2].url);
   }, [])
 
 
@@ -99,7 +97,7 @@ const Carousel3d = () => {
     <div className="carousel-body">
       <div id="drag-container">
         <div id="spin-container">
-          {artistData.data.map((element, index) => (
+          {artistData?.map((element, index) => (
             <img key={index} src={element.album.images[0].url} alt="" />
           ))}
         </div>
